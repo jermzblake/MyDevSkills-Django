@@ -22,8 +22,8 @@
                 {% if user.is_authenticated %}
                     <li>Welcome, {{ user.username }}</li>
                     <li><a href="{% url 'logout' %}">Log Out</a></li>
-                    <li><a href=""></a>My Skills</li>
-                    <li><a href=""></a>Add Skill</li>
+                    <li><a href="{% url 'index' %}">My Skills</a></li>
+                    <li><a href="">Add Skill</a></li>
                 {% else %}
                     <li><a href="{% url 'signup' %}">Sign Up</a></li>
                     <li><a href="{% url 'login' %}">Log In</a></li> 

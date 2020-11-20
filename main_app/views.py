@@ -18,7 +18,7 @@ def signup(request):
       user = form.save()
       # This is how we log a user in via code
       login(request, user)
-      return redirect('home')
+      return redirect('index')
     else:
       error_message = 'Invalid sign up - try again'
   # A bad POST or a GET request, so render signup.html with an empty form
@@ -27,4 +27,5 @@ def signup(request):
   return render(request, 'registration/signup.html', context)
 
 def index(request):
-    return render(request, 'main_app/index.html')
+    skills = Skill.objects.all()
+    return render(request, 'main_app/index.html', {'skills':skills})
