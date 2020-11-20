@@ -16,4 +16,4 @@ class Skill(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.description
+        return self.get_skill_level_display()
