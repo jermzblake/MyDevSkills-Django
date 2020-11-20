@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>My Dev Skills</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}"> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
@@ -18,7 +19,7 @@
             </ul>
             <ul class="right">
                 <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                <li><a href="{% url 'login' %}">Log In</a></li>
+                <li><a href="{% url 'login' %}">Log In</a></li> 
             </ul>
           </div>
         </nav>
