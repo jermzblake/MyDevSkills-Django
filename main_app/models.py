@@ -14,3 +14,6 @@ class Skill(models.Model):
     description = models.TextField(max_length=250)
     skill_level = models.IntegerField(choices=LEVELS, default=LEVELS[0][0])
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.description

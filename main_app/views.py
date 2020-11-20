@@ -26,6 +26,13 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
-def index(request):
-    skills = Skill.objects.filter(user=request.user)
-    return render(request, 'main_app/index.html', {'skills':skills})
+def skill_index(request):
+    skills = request.user.skill_set.all()
+     # You could also retrieve the logged in user's kicks like this:
+    # skills = Skill.objects.filter(user=request.user)
+    return render(request, 'skills/index.html', {'skills':skills})
+
+def skill_detail(request, skill_id):
+    skill = Skill.objects.get(id=skill_id)
+    return render(request, 'skills/detail.html', {'skill':skill})
+
