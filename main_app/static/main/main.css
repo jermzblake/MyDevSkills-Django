@@ -22,5 +22,9 @@ main {
   overflow-y: scroll;
 }
 
+.detail-title {
+  font-weight: 900;
+}
+
   
   

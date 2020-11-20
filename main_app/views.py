@@ -3,6 +3,8 @@ from .models import Skill
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.views.generic.edit import CreateView
+from .forms import SkillForm
 
 def home(request):
     return render(request, 'home.html')
@@ -36,3 +38,6 @@ def skill_detail(request, skill_id):
     skill = Skill.objects.get(id=skill_id)
     return render(request, 'skills/detail.html', {'skill':skill})
 
+class SkillCreate(CreateView):
+    model = Skill
+    fields = ['description', 'skill_level']
