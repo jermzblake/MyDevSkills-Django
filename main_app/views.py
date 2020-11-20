@@ -27,5 +27,5 @@ def signup(request):
   return render(request, 'registration/signup.html', context)
 
 def index(request):
-    skills = Skill.objects.all()
+    skills = Skill.objects.filter(user=request.user)
     return render(request, 'main_app/index.html', {'skills':skills})
