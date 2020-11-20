@@ -3,7 +3,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap");
 @import url("http://fonts.googleapis.com/css?family=Monoton&effect=neon");
 /* Global reset and font family set */
-*, *::before, *::after {
+* {
+  font-family: var(--font-roboto);
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
 }
 
@@ -41,34 +44,14 @@ project with: Ex. var(--nameOfVar) */
     0 16px 16px rgba(0, 0, 0, 0.12);
 }
 
-body {
-  margin: 0;
-  height: 100vh;
-  font-family: 'Source Code Pro';
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
-
-main {
-  width: 100%;
-  height: 100%;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow-y: scroll;
-}
-
-.page-wrapper {
+.game-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
 }
 
-.nav-bar-container {
+.top-bar-container {
   display: flex;
   justify-content: start;
   align-items: center;
@@ -80,6 +63,14 @@ main {
   border-radius: var(--border-radius);
   max-width: 320px;
 }
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
 .avatar {
   padding: 10px;
 }
