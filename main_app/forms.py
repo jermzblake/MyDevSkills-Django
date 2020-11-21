@@ -3,5 +3,5 @@ from .models import Skill
 
 class SkillForm(ModelForm):
     class Meta:
-        model: Skill
-        fields: ['description', 'skill_level']
+        model = Skill
+        fields = ['description', 'skill_level']

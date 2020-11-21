@@ -86,3 +86,8 @@ project with: Ex. var(--nameOfVar) */
 .ham-btn {
   margin-left: auto;
 }
+
+.she-gone {
+  color: red;
+  font-weight: 700;
+}

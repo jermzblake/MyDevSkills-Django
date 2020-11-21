@@ -3,7 +3,7 @@ from .models import Skill
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .forms import SkillForm
 
 def home(request):
@@ -38,6 +38,29 @@ def skill_detail(request, skill_id):
     skill = Skill.objects.get(id=skill_id)
     return render(request, 'skills/detail.html', {'skill':skill})
 
+
+
+def new_skill(request):
+  skill_form = SkillForm()
+  return render(request, 'main_app/new_skill.html', {'skill_form':skill_form})
+
 class SkillCreate(CreateView):
     model = Skill
-    fields = ['description', 'skill_level']
+    form_class = SkillForm
+    success_url = '/index'
+
+      # This inherited method is called when a
+    # valid skills form is being submitted
+    def form_valid(self, form):
+        # Assign the logged in user (self.request.user)
+        form.instance.user = self.request.user  # form.instance is the skill
+        # Let the CreateView do its job as usual
+        return super().form_valid(form)
+
+class SkillDelete(DeleteView):
+    model = Skill
+    success_url = '/index'
+
+class SkillUpdate(UpdateView):
+  model = Skill
+  fields = ['description', 'skill_level']

@@ -10,10 +10,13 @@
 <form action="" method="post">
     <!-- Django requires the following for security purposes -->
     {% csrf_token %}
-    <table>
-      <!-- Render the inputs inside of <tr>s & <td>s -->
-      {{ form.as_table }}
-    </table>
+      {{ form.as_p }}
     <input type="submit" value="Submit!" class="btn">
 </form>
+
+<script>
+    var selectEl = document.getElementById('id_skill_level');
+    M.FormSelect.init(selectEl);
+</script>
+
 {% endblock %}

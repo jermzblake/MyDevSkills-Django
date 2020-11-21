@@ -3,6 +3,8 @@
 
 <h1 class="detail-title">{{ skill.description }}</h1>
     <p>{{ skill }}</p>
+    <a href="{% url 'skills_delete' skill.id %}" class="btn">Delete Skill</a>
+    <a href="{% url 'skills_update' skill.id %}" class="btn">Edit Skill</a> 
 
 
 {% endblock %}
