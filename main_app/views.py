@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
-from .models import Skill
+from .models import Skill, Note
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from .forms import SkillForm
+from django.views.generic import ListView
+from .forms import SkillForm, NoteForm
 
 def home(request):
     return render(request, 'home.html')
@@ -36,9 +37,13 @@ def skill_index(request):
 
 def skill_detail(request, skill_id):
     skill = Skill.objects.get(id=skill_id)
-    return render(request, 'skills/detail.html', {'skill':skill})
-
-
+    note_form = NoteForm()
+    notes = Note.objects.filter(skill__id=skill_id)
+    return render(request, 'skills/detail.html', {
+      'skill':skill,
+      'note_form':note_form,
+      'notes':notes
+      })
 
 def new_skill(request):
   skill_form = SkillForm()
@@ -64,3 +69,19 @@ class SkillDelete(DeleteView):
 class SkillUpdate(UpdateView):
   model = Skill
   fields = ['description', 'skill_level']
+
+def add_note(request, skill_id):
+  # create a ModelForm instance using the data in request.POST
+  form = NoteForm(request.POST)
+  # validate the form
+  if form.is_valid():
+    # don't save the form to the db until it
+    # has the skill_id assigned
+    new_note = form.save(commit=False)
+    new_note.skill_id = skill_id
+    new_note.save()
+  return redirect('detail', skill_id=skill_id)
+
+class NoteDelete(DeleteView):
+  model = Note
+  success_url = '/index'  #supposed to be going back to detail page!

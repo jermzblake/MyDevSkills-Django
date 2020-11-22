@@ -12,7 +12,7 @@ LEVELS = (
 )
 
 class Skill(models.Model):
-    description = models.TextField(max_length=250)
+    description = models.TextField(max_length=80)
     skill_level = models.IntegerField(choices=LEVELS, default=LEVELS[0][0])
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -23,3 +23,9 @@ class Skill(models.Model):
         return reverse('detail', kwargs={'skill_id': self.id})
 
 
+class Note(models.Model):
+    content = models.TextField(max_length=250)
+    skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
+
+    def _str__(self):
+        return self.content

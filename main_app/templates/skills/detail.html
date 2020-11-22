@@ -4,7 +4,35 @@
 <h1 class="detail-title">{{ skill.description }}</h1>
     <p>{{ skill }}</p>
     <a href="{% url 'skills_delete' skill.id %}" class="btn">Delete Skill</a>
-    <a href="{% url 'skills_update' skill.id %}" class="btn">Edit Skill</a> 
+    <a href="{% url 'skills_update' skill.id %}" class="btn">Edit Skill</a><hr>
 
+
+
+    <div class="row">
+        <div class="col s6">
+            <h3>Notes</h3>
+            {% if notes.count %}
+                {% for note in notes %}
+                    <div class="card">
+                        <div class="card-content">
+                            {{ note.content }}
+                        </div>
+                        <div class="card-action">
+                            <a href="{% url 'notes_delete' skill.id note.id %}">delete note</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                    <h5>---No Notes---</h5>
+            {% endif %}
+            <hr>
+            <h5>Create Note</h5>
+            <form action="{% url 'add_note' skill.id %}" method="post">
+                {% csrf_token %}
+                {{ note_form.as_p }}
+                <input type="submit" class="btn" value="Add Note">
+            </form>
+        </div>
+    </div>
 
 {% endblock %}
