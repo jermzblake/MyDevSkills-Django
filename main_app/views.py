@@ -82,6 +82,10 @@ def add_note(request, skill_id):
     new_note.save()
   return redirect('detail', skill_id=skill_id)
 
-class NoteDelete(DeleteView):
-  model = Note
-  success_url = '/index'  #supposed to be going back to detail page!
+def delete_note(request, skill_id, pk):
+  note = Note.objects.get(id=pk)
+  if request.method == "POST":
+    note.delete()
+    return redirect('detail', skill_id=skill_id)
+
+

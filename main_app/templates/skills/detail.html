@@ -18,7 +18,10 @@
                             {{ note.content }}
                         </div>
                         <div class="card-action">
-                            <a href="{% url 'notes_delete' skill.id note.id %}">delete note</a>
+                            <form action="{% url 'delete_note' skill.id note.id %}" method="post">
+                                {% csrf_token %}
+                                <input type="submit" name="delete" value="Delete note">
+                            </form>
                         </div>
                     </div>
                 {% endfor %}

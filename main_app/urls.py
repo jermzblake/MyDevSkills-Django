@@ -9,7 +9,7 @@ urlpatterns = [
     path('skill/<int:pk>/update', views.SkillUpdate.as_view(), name='skills_update'),
     path('skill/<int:pk>/delete/', views.SkillDelete.as_view(), name='skills_delete'),
     path('skill/<int:skill_id>/add_note', views.add_note, name='add_note'),
-    path('skill/<int:skill_id>/note/<int:pk>/delete/', views.NoteDelete.as_view(), name='notes_delete'),
+    path('skill/<int:skill_id>/<int:pk>/delete_note', views.delete_note, name='delete_note'),
     path('accounts/signup/', views.signup, name='signup'),
     
 ]
